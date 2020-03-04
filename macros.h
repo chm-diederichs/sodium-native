@@ -23,7 +23,7 @@
 
 #define SN_TYPE_ASSERT(name, var, type, message) \
   napi_valuetype name##_valuetype; \
-  SN_STATUS_THROWS(napi_typeof(env, var, &name##_valuetype), ""); \
+  SN_STATUS_THROWS(napi_typeof(env, var, &name##_valuetype), "") \
   if (name##_valuetype != type) { \
     napi_throw_type_error(env, NULL, message); \
     return NULL; \
@@ -82,7 +82,7 @@
 #define SN_EXPORT_UINT32(name, num) \
   { \
     napi_value name##_num; \
-    SN_STATUS_THROWS(napi_create_uint32(env, (int32_t) num, &name##_num), "") \
+    SN_STATUS_THROWS(napi_create_uint32(env, (uint32_t) num, &name##_num), "") \
     SN_STATUS_THROWS(napi_set_named_property(env, exports, #name, name##_num), "") \
   }
 
